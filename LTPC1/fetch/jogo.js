@@ -1,3 +1,4 @@
+prompt ("seu nome")
 const NUM_MOEDAS = 40;
 const TEMPO_INICIAL = 10;
 let pontos = 0;
@@ -41,7 +42,7 @@ function contarTempo() {
 
   if (tempo <= 0) {
     clearInterval(timer);
-    alert("Parabéns frango, você fez " + pontos + " pontos!");
+    alert("Parabéns, você fez " + pontos + " pontos!");
     iniciaJogo();
   }
   
