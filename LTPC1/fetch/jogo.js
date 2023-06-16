@@ -1,11 +1,50 @@
 prompt ("seu nome")
 const NUM_MOEDAS = 40;
-const TEMPO_INICIAL = 10;
+const TEMPO_INICIAL = 15;
 let pontos = 0;
 let tempo = 0;
 let time = null;
 
 function iniciaJogo(){
+
+  // Função para criar um elemento HTML e adicionar ao container
+
+
+function criarElemento(nome, pontucao) {
+  const container = document.getElementById('container');
+  const nome = document.createElement('h3');
+  const pontuacao = document.createElement('h4');
+
+  nome.textContent = nome;
+ pontuacao.textContent = pontuacao;
+
+  container.appendChild(nome);
+  container.appendChild(pontuacao);
+}
+
+
+fetch('http://localhost:5050/score')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Erro na requisição');
+    }
+    return response.json();
+  })
+  .then(data => {
+    // Processar os dados e exibir a lista no HTML
+    console.log(data.results);
+
+    const jogadores = data.results;
+
+    jogadores.forEach(jogador => {
+      criarElemento(jogador.name, jogador.pontuacao);
+    });
+  })
+  .catch(error => {
+    console.error(error);
+  });
+
+  
 pontos = 0;
 tempo = TEMPO_INICIAL;
 let tela = document.getElementById("tela");
